@@ -3,6 +3,21 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# dataset
+
+101_ObjectCategories/
+
+# models
+
+vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5
+train_features.npy
+train_labels.npy
+test_features.npy
+test_labels.npy
+
+# DS of macos system
+.DS_Store
+
 # C extensions
 *.so
 
