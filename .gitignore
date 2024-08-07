@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# files or directories to ignore
+uploads/
+index.pkl
+vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5
+101_ObjectCategories/
+
 # Distribution / packaging
 .Python
 build/
