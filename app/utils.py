@@ -38,8 +38,16 @@ def find_similar_images(query_image_path):
     query_features = extract_features(model, query_image_path)
     distances, indices = nbrs.kneighbors([query_features])
     
-    similar_images = [(image_paths[idx], distances[0][i]) for i, idx in enumerate(indices[0])]
+    similar_images = []
+    for i, idx in enumerate(indices[0]):
+        path = image_paths[idx]
+        # Asegurarse de que no haya duplicaciones en la ruta
+        path = path.replace('101_ObjectCategories/101_ObjectCategories', '101_ObjectCategories')
+        similar_images.append((path, distances[0][i]))
+
     return similar_images
+
+
 
 def show_images(query_image_path, similar_images):
     fig, axes = plt.subplots(1, 6, figsize=(20, 5))

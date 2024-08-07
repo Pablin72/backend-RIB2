@@ -1,9 +1,10 @@
 from flask import Blueprint, request, jsonify, send_from_directory
-from .utils import extract_features, find_similar_images, show_images
 import os
+from .utils import extract_features, find_similar_images, show_images
 
 main = Blueprint('main', __name__)
 
+# Ruta para manejar la carga de archivos
 @main.route('/upload', methods=['POST'])
 def upload():
     if 'file' not in request.files:
@@ -21,8 +22,16 @@ def upload():
         os.remove(temp_path)
 
         return jsonify(similar_images), 200
+    
 
 @main.route('/images/<path:filename>')
 def serve_image(filename):
-    image_folder = '/Users/sebitas/EPN/Septimo-Semestre/Information-Retrieval/PROYECTO-RECONOCIMIENTO/BACKEND/backend-RIB2/101_ObjectCategories'
+    image_folder = '/Users/sebitas/EPN/Septimo-Semestre/Information-Retrieval/PROYECTO-RECONOCIMIENTO/BACKEND/backend-RIB2'
+    
+    # Asegurarse de que no haya duplicaciones en la ruta
+    filename = filename.replace('101_ObjectCategories/101_ObjectCategories', '101_ObjectCategories')
+
+    full_path = os.path.join(image_folder, filename)
+    print(f"Serving image from: {full_path}")  # Agrega este log para verificar la ruta completa
+
     return send_from_directory(image_folder, filename)
