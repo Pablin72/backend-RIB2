@@ -6,6 +6,9 @@ __pycache__/
 # dataset
 
 101_ObjectCategories/
+index.pkl
+uploads/
+app.py
 
 # models
 
